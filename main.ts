@@ -1,6 +1,15 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 493) {
         radio.sendNumber(8427)
+    } else if (receivedNumber == 8427) {
+        basic.showString("ALERT! STOLEN IDENTITY!")
+    } else if (receivedNumber == 11638) {
+        basic.showString("Cipriano, Coralyn")
+        basic.showString("ID# 11638")
+        basic.showString("8 years old")
+        basic.showString("Parents: Rose and Michael")
+    } else {
+        basic.showString("ID# " + receivedNumber + " " + "is not a registered ID number.")
     }
 })
 input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
@@ -8,13 +17,6 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
     radio.sendString(Message)
     Message = ""
 })
-function Start () {
-    radio.setGroup(562)
-    Message = ""
-    letter = 0
-    text_list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", ".", "?", "!", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-    basic.showString("Hi, Violet!")
-}
 input.onButtonPressed(Button.A, function () {
     if (letter > 0) {
         letter += -1
@@ -23,8 +25,8 @@ input.onButtonPressed(Button.A, function () {
     }
     basic.showString("" + (text_list[letter]))
 })
-input.onGesture(Gesture.SixG, function () {
-    Start()
+input.onGesture(Gesture.ScreenDown, function () {
+    radio.sendNumber(493)
 })
 input.onButtonPressed(Button.AB, function () {
     Message = "" + Message + text_list[letter]
@@ -63,4 +65,8 @@ let Received_String = ""
 let text_list: string[] = []
 let letter = 0
 let Message = ""
-Start()
+radio.setGroup(562)
+Message = ""
+letter = 0
+text_list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", ".", "?", "!", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+basic.showString("Hi, Violet!")
