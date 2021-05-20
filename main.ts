@@ -14,7 +14,6 @@ function Start () {
     letter = 0
     text_list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", ".", "?", "!", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     basic.showString("Hi, Violet!")
-    basic.showString("Screen down for reminder.")
 }
 input.onButtonPressed(Button.A, function () {
     if (letter > 0) {
@@ -26,9 +25,6 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onGesture(Gesture.SixG, function () {
     Start()
-})
-input.onGesture(Gesture.ScreenDown, function () {
-    basic.showString("A and B: Move between letters. A+B: Select letter. Shake: Clear message. Logo long press: Send message. Logo pressed: Accept comm. Hit watch: Restart. Screen down: Reminder")
 })
 input.onButtonPressed(Button.AB, function () {
     Message = "" + Message + text_list[letter]
@@ -58,6 +54,9 @@ input.onGesture(Gesture.Shake, function () {
     Message = ""
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    if (Received_String == "PERSON IN ROOM!") {
+        basic.showString("ALERT!")
+    }
     basic.showString(Received_String)
 })
 let Received_String = ""
